@@ -17,22 +17,32 @@ export default function Calculator() {
     }
   }
   function calculate() {
+    let result;
     if (operator === "+") {
-      setNum(parseFloat(oldnum) + parseFloat(num));
+      result = parseFloat(oldnum) + parseFloat(num);
     } else if (operator === "-") {
-      setNum(parseFloat(oldnum) - parseFloat(num));
+      result = parseFloat(oldnum) - parseFloat(num);
     } else if (operator === "X") {
-      setNum(parseFloat(oldnum) * parseFloat(num));
+      result = parseFloat(oldnum) * parseFloat(num);
     } else if (operator === "/") {
-      setNum(parseFloat(oldnum) / parseFloat(num));
+      result = parseFloat(oldnum) / parseFloat(num);
     }
+    setNum(result.toFixed(3));
   }
+  
+  // function calculate() {
+  //   if (operator === "+") {
+  //     setNum((parseFloat(oldnum) + parseFloat(num)).toFixed(6));
+  //   } else if (operator === "-") {
+  //     setNum((parseFloat(oldnum) - parseFloat(num)).toFixed(6));
+  //   } else if (operator === "X") {
+  //     setNum((parseFloat(oldnum) * parseFloat(num)).toFixed(6));
+  //   } else if (operator === "/") {
+  //     setNum((parseFloat(oldnum) / parseFloat(num)).toFixed(6));
+  //   }
+  // }
   function clear() {
     setNum(0);
-  }
-
-  function porcentage() {
-    setNum(num / 100);
   }
 
   function changeSign() {
@@ -43,6 +53,10 @@ export default function Calculator() {
     }
   }
 
+  function porcentage() {
+    setNum(num / 100);
+  }
+
   function operatorHandler(e) {
     var operatorInput = e.target.value;
     setOperator(operatorInput);
@@ -50,7 +64,7 @@ export default function Calculator() {
     setNum(0);
   }
 
-  
+
 
   return (
     <div>
@@ -107,7 +121,7 @@ export default function Calculator() {
           <button onClick={inputNum} value={"."}>
             ,
           </button>
-          <button style={{visibility: "hidden"}}>
+          <button style={{ visibility: "hidden" }}>
             ,
           </button>
           <button className="orange" onClick={calculate}>
